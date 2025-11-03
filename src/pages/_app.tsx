@@ -11,8 +11,15 @@ type NextPageWithLayout = NextPage & {
 export default function App({
   Component,
   pageProps,
-}: AppProps & { Component: NextPageWithLayout }) {
-  const getLayout = Component.getLayout ?? ((page: ReactNode) => page);
+}: AppProps & {
+  Component: NextPageWithLayout;
+}) {
+  const getLayout =
+    Component.getLayout ?? ((page: ReactNode) => page);
 
-  return <GlobalLayout>{getLayout(<Component {...pageProps} />)}</GlobalLayout>;
+  return (
+    <GlobalLayout>
+      {getLayout(<Component {...pageProps} />)}
+    </GlobalLayout>
+  );
 }
